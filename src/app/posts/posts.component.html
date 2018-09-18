@@ -1,0 +1,49 @@
+<ngx-datatable *ngIf="rows"
+               [rows]="rows"
+                class="material fullscreen"
+               [columns]="columns"
+               [columnMode]="'force'"
+               [headerHeight]="0"
+               [footerHeight]="50"
+               [rowHeight]="'auto'"
+               [reorderable]="reorderable"
+               (activate)='navigate($event)'
+               >
+  <ngx-datatable-column [width]="600">
+      <ng-template let-column="column" ngx-datatable-header-template>
+          Title
+      </ng-template>
+      <ng-template let-row="row" ngx-datatable-cell-template>
+          <span class="title-date"> {{row.title}} </span> <span class="author"> - {{row.author}} -</span>
+      </ng-template>
+  </ngx-datatable-column>
+  <ngx-datatable-column [width]="220">
+      <ng-template let-column="column" ngx-datatable-header-template>
+          Date
+      </ng-template>
+      <ng-template let-row="row" ngx-datatable-cell-template>
+          <span class="title-date">{{row.created_at | dfnsDistanceInWordsToNow }}</span>
+      </ng-template>
+  </ngx-datatable-column>
+  <ngx-datatable-column [width]="80">
+      <ng-template let-column="column" ngx-datatable-header-template>
+        Action
+      </ng-template>
+      <ng-template let-row="row" ngx-datatable-cell-template>
+        <div (click)="$event.stopPropagation()">
+          <button mat-button class="show-on-hover" (click)="openDeleteDialog(row._id)">
+              <mat-icon color="accent">delete</mat-icon>
+          </button>
+        </div>
+      </ng-template>
+  </ngx-datatable-column>
+</ngx-datatable>
+<ng-template #deleteDialog>
+  <mat-dialog-content>
+    <p>Are you sure you want to delete this post?</p>
+  </mat-dialog-content>
+  <mat-dialog-actions align="end">
+    <button mat-button matDialogClose color="accent">No</button>
+    <button mat-button [matDialogClose]="true" color="primary">Yes</button>
+  </mat-dialog-actions>
+</ng-template>
