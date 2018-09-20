@@ -12,7 +12,8 @@ import {MatCardModule} from '@angular/material/card';
         MatIconModule,
         MatButtonModule,
         MatCardModule,
-        MatDialogModule
+        MatDialogModule,
+        MatSnackBarModule
     ],
     exports: [
             MatIconModule,
