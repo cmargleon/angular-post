@@ -1,7 +1,6 @@
 //MODULES
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import { SocketIoModule, SocketIoConfig } from 'ngx-socket-io';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MaterialModule } from './material';
 import { HttpClientModule } from '@angular/common/http';
@@ -18,7 +17,6 @@ import { PostsComponent } from './posts/posts.component';
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { SpinnerInterceptor } from './services/spinner.interceptor';
 
-const config: SocketIoConfig = { url: 'http://localhost:8988', options: {} };
 
 @NgModule({
   declarations: [
@@ -33,9 +31,8 @@ const config: SocketIoConfig = { url: 'http://localhost:8988', options: {} };
     HttpClientModule,
     NgxDatatableModule,
     DateFnsModule.forRoot(),
-    NgxSpinnerModule,
-    SocketIoModule.forRoot(config)
-  ],
+    NgxSpinnerModule
+    ],
   providers: [{
     provide: HTTP_INTERCEPTORS,
     useClass: SpinnerInterceptor,
